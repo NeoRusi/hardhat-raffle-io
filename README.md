@@ -1,4 +1,4 @@
-# Hardhat Smartcontract Lottery (Raffle) FCC
+# Hardhat Smartcontract Lottery (Raffle) 
 
 # Getting Started
 
