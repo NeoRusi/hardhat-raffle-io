@@ -17,7 +17,7 @@
 ## Quickstart
 
 ```
-git clone https://github.com/NeoRusi/hardhat-raffle-io
+git clone https://github.com/NeoRusi/hardhat-smartcontract-lottery-io
 cd hardhat-smartcontract-lottery
 yarn
 ```
