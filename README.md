@@ -1,29 +1,4 @@
-# Hardhat Smartcontract Lottery (Raffle) FCC
-
-This is a section of the Javascript Blockchain/Smart Contract FreeCodeCamp Course.
-
-Video Coming soon...
-
-[Full Repo](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
-
-- [Hardhat Smartcontract Lottery (Raffle) FCC](#hardhat-smartcontract-lottery-raffle-fcc)
-- [Getting Started](#getting-started)
-  - [Requirements](#requirements)
-  - [Quickstart](#quickstart)
-  - [Typescript](#typescript)
-- [Useage](#useage)
-  - [Testing](#testing)
-    - [Test Coverage](#test-coverage)
-- [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
-    - [Estimate gas cost in USD](#estimate-gas-cost-in-usd)
-  - [Verify on etherscan](#verify-on-etherscan)
-    - [Typescript differences](#typescript-differences)
-- [Linting](#linting)
-- [Thank you!](#thank-you)
-
-This project is apart of the Hardhat FreeCodeCamp video.
-
-Video coming soon...
+# Hardhat Smartcontract Lottery (Raffle) 
 
 # Getting Started
 
@@ -42,10 +17,9 @@ Video coming soon...
 ## Quickstart
 
 ```
-git clone --branch typescript https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
-cd hardhat-fund-me-fcc
+git clone https://github.com/NeoRusi/hardhat-smartcontract-lottery-io
+cd hardhat-smartcontract-lottery
 yarn
-yarn typechain
 ```
 
 ## Typescript
@@ -54,9 +28,10 @@ If you want to get to typescript and you cloned the javascript version, just run
 
 ```
 git checkout typescript
+yarn 
 ```
 
-# Useage
+# Usage
 
 Deploy:
 
@@ -82,11 +57,11 @@ yarn hardhat coverage
 
 1. Setup environment variabltes
 
-You'll want to set your `RINKEBY_RPC_URL` and `PRIVATE_KEY` as environment variables. You can add them to a `.env` file, similar to what you see in `.env.example`.
+You'll want to set your `GOERLI_RPC_URL` and `PRIVATE_KEY` as environment variables. You can add them to a `.env` file, similar to what you see in `.env.example`.
 
 - `PRIVATE_KEY`: The private key of your account (like from [metamask](https://metamask.io/)). **NOTE:** FOR DEVELOPMENT, PLEASE USE A KEY THAT DOESN'T HAVE ANY REAL FUNDS ASSOCIATED WITH IT.
   - You can [learn how to export it here](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key).
-- `RINKEBY_RPC_URL`: This is url of the rinkeby testnet node you're working with. You can get setup with one for free from [Alchemy](https://alchemy.com/?a=673c802981)
+- `GOERLI_RPC_URL`: This is url of the goerli testnet node you're working with. You can get setup with one for free from [Alchemy](https://alchemy.com/?a=673c802981)
 
 2. Get testnet ETH
 
@@ -103,11 +78,11 @@ Head over to [vrf.chain.link](https://vrf.chain.link/) and setup a new subscript
 
 3. Deploy
 
-In your `helper-hardhat-config.ts` add your `subscriptionId` under the section of the chainId you're using (aka, if you're deploying to rinkeby, add your `subscriptionId` in the `subscriptionId` field under the `4` section.)
+In your `helper-hardhat-config.js` add your `subscriptionId` under the section of the chainId you're using (aka, if you're deploying to goerli, add your `subscriptionId` in the `subscriptionId` field under the `4` section.)
 
 Then run:
 ```
-yarn hardhat deploy --network rinkeby
+yarn hardhat deploy --network goerli
 ```
 
 And copy / remember the contract address. 
@@ -120,7 +95,7 @@ Go back to [vrf.chain.link](https://vrf.chain.link) and under your subscription 
 
 [You can follow the documentation if you get lost.](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/)
 
-Go to [keepers.chain.link](https://keepers.chain.link/new) and register a new upkeep. Your UI will look something like this once completed:
+Go to [keepers.chain.link](https://keepers.chain.link/new) and register a new upkeep. Choose `Custom logic` as your trigger mechanism for automation. Your UI will look something like this once completed:
 
 ![Keepers](./img/keepers.png)
 
@@ -129,14 +104,14 @@ Go to [keepers.chain.link](https://keepers.chain.link/new) and register a new up
 You're contract is now setup to be a tamper proof autonomous verifiably random lottery. Enter the lottery by running:
 
 ```
-yarn hardhat run scripts/enter.ts --network rinkeby
+yarn hardhat run scripts/enter.js --network goerli
 ```
 
 ### Estimate gas cost in USD
 
 To get a USD estimation of gas cost, you'll need a `COINMARKETCAP_API_KEY` environment variable. You can get one for free from [CoinMarketCap](https://pro.coinmarketcap.com/signup). 
 
-Then, uncomment the line `coinmarketcap: COINMARKETCAP_API_KEY,` in `hardhat.config.ts` to get the USD estimation. Just note, everytime you run your tests it will use an API call, so it might make sense to have using coinmarketcap disabled until you need it. You can disable it by just commenting the line back out. 
+Then, uncomment the line `coinmarketcap: COINMARKETCAP_API_KEY,` in `hardhat.config.js` to get the USD estimation. Just note, everytime you run your tests it will use an API call, so it might make sense to have using coinmarketcap disabled until you need it. You can disable it by just commenting the line back out. 
 
 
 
@@ -144,12 +119,12 @@ Then, uncomment the line `coinmarketcap: COINMARKETCAP_API_KEY,` in `hardhat.con
 
 If you deploy to a testnet or mainnet, you can verify it if you get an [API Key](https://etherscan.io/myapikey) from Etherscan and set it as an environemnt variable named `ETHERSCAN_API_KEY`. You can pop it into your `.env` file as seen in the `.env.example`.
 
-In it's current state, if you have your api key set, it will auto verify kovan contracts!
+In it's current state, if you have your api key set, it will auto verify goerli contracts!
 
 However, you can manual verify with:
 
 ```
-yarn hardhat verify --constructor-args arguments.ts DEPLOYED_CONTRACT_ADDRESS
+yarn hardhat verify --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
 ```
 
 ### Typescript differences
@@ -177,9 +152,4 @@ yarn lint:fix
 
 If you appreciated this, feel free to follow me or donate!
 
-ETH/Polygon/Avalanche/etc Address: 0x9680201d9c93d65a3603d2088d125e955c73BD65
-
-[![Patrick Collins Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/PatrickAlphaC)
-[![Patrick Collins YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCn-3f8tw_E1jZvhuHatROwA)
-[![Patrick Collins Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/patrickalphac/)
-[![Patrick Collins Medium](https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@patrick.collins_58673/)
+ETH/Polygon/Avalanche/etc Address: 0x2835fbB0e84ff44F7e25b66202B73E57E427cC28
